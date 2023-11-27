@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+    <style>
+        input[type="button"]{
+            width: 85px;
+            height: 50px;
+            margin-bottom: 5px;
+            
+        }
+        input[type="text"]{
+            width: 345px;
+            height: 40px;
+            margin-bottom: 5px;
+            border-radius: 3px;
+        }
+        .calculator{
+            align-items: center;
+        }
+
+
+        @media screen and (max-width: 375px) {
+
+        input[type="button"]{
+            width: 74px;
+            height: 50px;
+            margin-bottom: 5px;
+            
+        }
+        input[type="text"]{
+            width: 300px;
+            height: 40px;
+            margin-bottom: 5px;
+            border-radius: 3px;
+        }
+    }
+        @media screen and (max-width: 320px) {
+
+            input[type="button"]{
+                width: 61px;
+                height: 50px;
+                margin-bottom: 5px;
+                
+            }
+            input[type="text"]{
+                width: 250px;
+                height: 40px;
+                margin-bottom: 5px;
+                border-radius: 3px;
+        }
+
+
+            
+        }
+    </style>
+    <script>
+        let inputText = '';
+
+function OnClick(value) {
+    inputText += value;
+    document.getElementById('input').value = inputText;
+}
+
+function OnReset() {
+    inputText = '';
+    document.getElementById('input').value = '';
+    document.getElementById('result').value = '';
+}
+
+function OnResult() {
+    const result = calculate(inputText);
+    document.getElementById('result').value = result;
+}
+
+function calculate(expression) {
+    // Simple calculator function supporting +, -, *, /
+    const operators = expression.match(/[+\-*/]/g);
+    const operands = expression.split(/[+\-*/]/).map(Number);
+
+    let result = operands[0];
+
+    for (let i = 0; i < operators.length; i++) {
+        switch (operators[i]) {
+            case '+':
+                result += operands[i + 1];
+                break;
+            case '-':
+                result -= operands[i + 1];
+                break;
+            case '*':
+                result *= operands[i + 1];
+                break;
+            case '/':
+                if (operands[i + 1] !== 0) {
+                    result /= operands[i + 1];
+                } else {
+                    return 'Error';
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    return result;
+}
+
+    </script>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="input" disabled>
+        <br>
+        <input type="text" id="result" disabled/>
+        <div class="r1">
+            <input type="button"  value="1" onclick="OnClick(1)">
+            <input type="button"  value="2" onclick="OnClick(2)">
+            <input type="button"  value="3" onclick="OnClick(3)">
+            <input type="button"  value="+" onclick="OnClick('+')">
+            
+        </div>
+        <div class="r1">
+            <input type="button"  value="4" onclick="OnClick(4)">
+            <input type="button"  value="5" onclick="OnClick(5)">
+            <input type="button"  value="6" onclick="OnClick(6)">
+            <input type="button"  value="-" onclick="OnClick('-')">
+            
+        </div>
+        <div class="r1">
+            <input type="button"  value="7" onclick="OnClick(7)">
+            <input type="button"  value="8" onclick="OnClick(8)">
+            <input type="button"  value="9" onclick="OnClick(9)">
+            <input type="button"  value="*" onclick="OnClick('*')">
+            
+        </div>
+        <div class="r1">
+            <input type="button"  value="0" onclick="OnClick(0)">
+            <input type="button"  value="C" onclick="OnReset('C')">
+            <input type="button"  value="=" onclick="OnResult()">
+            <input type="button"  value="/" onclick="OnClick('/')">
+            
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../../../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <title>ThemeChange</title>
+
+    <style>
+        @media screen and (max-width: 320px) {
+    .border {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .border {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .border {
+        width: 100%;
+    }
+}
+
+    </style>
+
+    <script>
+       
+        function CheckTheme(){
+            var checktheme = document.getElementById('checktheme');
+            form = document.querySelector('form');
+            if(checktheme.checked){
+                form.className = "bg-black border border-3 border-dark p-3 w-25 mt-5 text-white"
+                document.querySelector("button").className="btn btn-danger w-100 mt-3";
+            }else{
+                form.className = "border border-3 border-dark p-3 w-25 mt-5"
+                document.querySelector("button").className="btn btn-danger w-100 mt-3";
+            }
+        }
+    </script>
+</head>
+<body class="container-fluid justify-content-center align-items-center">
+    <form class="border border-3 border-dark p-3 w-25 mt-5">
+        <div class="form-switch">
+            <input type="checkbox" class="form-check-input" onclick="CheckTheme()" id="checktheme">Dark Theme
+        </div>    
+        <div>
+            <h2 class="bi bi-person">Log in</h2>
+            <label for="name">User Name</label>
+            <input type="text" class="form-control w-100"  id="name">
+            <label for="password">Password</label>
+            <input type="text" class="form-control w-100">
+            <button class="btn btn-danger w-100 mt-3">Login</button>
+        </div>
+    </form>
+</body>
+</html>
